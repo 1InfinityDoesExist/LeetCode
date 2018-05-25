@@ -7,9 +7,10 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-bool isValidBS(struct TreeNode *root, struct TreeNode *minNode, struct TreeNode *maxNode)
+
+bool isBST(struct TreeNode *root, struct TreeNode *minNode, struct TreeNode *maxNode)
 {
-    if(!root)
+    if(root == NULL)
     {
         return true;
     }
@@ -17,14 +18,13 @@ bool isValidBS(struct TreeNode *root, struct TreeNode *minNode, struct TreeNode 
     {
         return false;
     }
-    return isValidBS(root->left, minNode, root) && isValidBS(root->right, root, maxNode);
+    return (isBST(root->left, minNode, root) && isBST(root->right, root, maxNode));
 }
-
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        return isValidBS(root, NULL, NULL);
 
+        return isBST(root, NULL, NULL);
     }
-};
 
+};
