@@ -1,33 +1,34 @@
 class Solution {
 public:
     int jump(vector<int>& nums) {
-        int n = nums.size();
+        if(nums[0] == 0)
+        {
+            return 0;
+        }
         int start = 0;
         int end = 0;
         int steps = 0;
-
-        while(end < n-1)
+        int lastPos = nums.size()-1;
+        while(end < lastPos)
         {
             steps++;
-            int maxend = end+1;
+            int maxEnd = end+1;
             for(int iter = start; iter <= end; iter++)
             {
-                if(iter+nums[iter] >= n-1)
+                if(iter + nums[iter] >= lastPos)
                 {
                     return steps;
                 }
-                maxend = max(maxend, iter+nums[iter]);
+                maxEnd = max(maxEnd, iter+nums[iter]);
             }
             start = end+1;
-            end = maxend;
-          /*  if(nums[end] == 0)
+            end = maxEnd;
+         /*  if(nums[end] == 0)
             {
-                return -1;
+                return 0;
             }*/
         }
         return steps;
 
     }
-
-
 };
